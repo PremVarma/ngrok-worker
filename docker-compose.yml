@@ -1,0 +1,12 @@
+version: '3'
+services:
+  ngrok-manager:
+    image: pirem123/ngrok-manager:latest 
+    container_name: ngrok-manager
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/.env:/app/config/.env
+    network_mode: "host"
+    restart: unless-stopped
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
